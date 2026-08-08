@@ -14,3 +14,5 @@ if(!isset($_SESSION['user_id'])){
 <p>You are logged in.</p>
 
 <a href="../auth/logout.php">Logout</a>
+
+<a href="editor.php">Create New Post</a>
