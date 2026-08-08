@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include "../config/db.php";
 
 if (!isset($_GET['id'])) {
@@ -26,6 +28,11 @@ if ($result->num_rows === 0) {
 }
 
 $blog = $result->fetch_assoc();
+
+if (
+    isset($_SESSION['user_id']) &&
+    $_SESSION['user_id'] == $blog['user_id']
+) 
 
 ?>
 
@@ -56,6 +63,13 @@ $blog = $result->fetch_assoc();
     <div>
         <?php echo nl2br(htmlspecialchars($blog['content'])); ?>
     </div>
+
+     <p>
+        <a href="editor.php?id=<?php echo $blog['id']; ?>">
+            Edit Blog
+        </a>
+    </p>
+
 
     <br>
 
