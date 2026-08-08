@@ -16,3 +16,5 @@ if(!isset($_SESSION['user_id'])){
 <a href="../auth/logout.php">Logout</a>
 
 <a href="editor.php">Create New Post</a>
+
+<a href="index.php">View All Blogs</a>
