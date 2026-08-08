@@ -35,8 +35,9 @@ $stmt->bind_param(
 
 if($stmt->execute()){
 
-    echo "Registration successful!";
-
+    echo "Registration successful! Redirecting to login...";
+    header("Refresh: 2; URL=../public/login.html");
+    exit();
 }
 else{
 
