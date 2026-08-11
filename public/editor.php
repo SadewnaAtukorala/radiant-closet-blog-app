@@ -59,24 +59,9 @@ if (isset($_GET['id'])) {
     $stmt->close();
 }
 
+include "header.php";
+
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-
-    <title>
-        <?php
-        echo $edit_mode
-            ? "Edit Blog"
-            : "Create Blog";
-        ?>
-    </title>
-
-</head>
-
-<body>
 
     <h1>
         <?php
@@ -150,11 +135,9 @@ if (isset($_GET['id'])) {
         Cancel
     </a>
 
-</body>
-
-</html>
-
 <?php
+
+include "footer.php";
 
 $conn->close();
 

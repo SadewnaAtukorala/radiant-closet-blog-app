@@ -24,25 +24,15 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    die("Blog not found.");
+    echo "Blog not found.";
+    exit();
 }
 
 $blog = $result->fetch_assoc();
 
+include "header.php";
+
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-
-    <title>
-        <?php echo htmlspecialchars($blog['title']); ?>
-    </title>
-
-</head>
-
-<body>
 
     <h1>
         <?php echo htmlspecialchars($blog['title']); ?>
@@ -108,11 +98,10 @@ $blog = $result->fetch_assoc();
         ← Back to All Blogs
     </a>
 
-</body>
-
-</html>
 
 <?php
+
+include "footer.php";
 
 $stmt->close();
 $conn->close();
