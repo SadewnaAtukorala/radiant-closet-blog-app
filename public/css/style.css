@@ -1036,3 +1036,260 @@ RESPONSIVE DESIGN
     }
 
 }
+
+/* ========================================
+   SINGLE BLOG PAGE
+======================================== */
+
+.single-blog {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   SINGLE BLOG HEADER
+======================================== */
+
+.single-blog-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 45px;
+}
+
+
+.single-blog-category {
+    color: var(--color-primary-dark);
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+
+.single-blog-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 3.2rem;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 20px;
+}
+
+
+.single-blog-meta {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+
+.single-blog-meta span {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+
+/* ========================================
+   SINGLE BLOG IMAGE
+======================================== */
+
+.single-blog-image {
+    width: 100%;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+
+.single-blog-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* ========================================
+   SINGLE BLOG CONTENT
+======================================== */
+
+.single-blog-content {
+    max-width: 720px;
+    margin: 0 auto;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    line-height: 1.9;
+
+    color: var(--color-text);
+}
+
+
+.single-blog-content p {
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   SINGLE BLOG ACTIONS
+======================================== */
+
+.single-blog-actions {
+    max-width: 720px;
+    margin: 50px auto 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.single-blog-actions form {
+    margin: 0;
+}
+
+
+/* Edit Button */
+
+.edit-button {
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-white);
+
+    border-radius: 4px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    transition: background-color 0.3s ease;
+}
+
+
+.edit-button:hover {
+    background-color: var(--color-primary-dark);
+
+    color: var(--color-white);
+
+    text-decoration: none;
+}
+
+
+/* Delete Button */
+
+.delete-button {
+    background-color: transparent;
+
+    color: var(--color-danger);
+
+    border: 1px solid var(--color-danger);
+
+    padding: 9px 20px;
+
+    border-radius: 4px;
+
+    font-size: 0.9rem;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.delete-button:hover {
+    background-color: var(--color-danger);
+
+    color: var(--color-white);
+}
+
+
+/* ========================================
+   BACK TO BLOGS
+======================================== */
+
+.single-blog-back {
+    max-width: 720px;
+    margin: 35px auto 0;
+
+    padding-top: 25px;
+
+    border-top: 1px solid var(--color-border);
+}
+
+
+.single-blog-back a {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   SINGLE BLOG - MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .single-blog {
+        width: 100%;
+    }
+
+
+    .single-blog-header {
+        margin-bottom: 35px;
+    }
+
+
+    .single-blog-category {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+
+
+    .single-blog-title {
+        font-size: 2.2rem;
+    }
+
+
+    .single-blog-meta {
+        font-size: 0.82rem;
+    }
+
+
+    .single-blog-image {
+        margin-bottom: 35px;
+    }
+
+
+    .single-blog-content {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+
+    .single-blog-actions {
+        flex-wrap: wrap;
+        margin-top: 40px;
+    }
+
+
+    .single-blog-back {
+        margin-top: 30px;
+    }
+
+}
+
+/* ========================================
+   STICKY FOOTER LAYOUT
+======================================== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}

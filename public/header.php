@@ -128,3 +128,5 @@ if (session_status() === PHP_SESSION_NONE) {
     </script>
 
 </header>
+
+</main>
