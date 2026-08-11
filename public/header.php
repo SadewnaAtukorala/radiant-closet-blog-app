@@ -15,6 +15,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <title>The Radiant Closet</title>
 
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
@@ -23,9 +25,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <nav>
 
-        <a href="index.php">
-            The Radiant Closet
-        </a>
+        <a href="index.php" class="logo-link">
+        <img
+            src="assets/images/logo.png"
+            alt="The Radiant Closet"
+            class="site-logo"
+        >
+</a>
 
         <div>
 

@@ -14,13 +14,28 @@ include "header.php";
 
 ?>
 
-<h1>All Blogs</h1>
+<section class="page-intro">
+
+    <p class="eyebrow">
+        FASHION • STYLE • BEAUTY
+    </p>
+
+    <h1>
+        The Latest from the Closet
+    </h1>
+
+    <p>
+        Discover fashion inspiration, styling ideas,
+        trends, and stories from our community.
+    </p>
+
+</section>
 
 <?php if ($result->num_rows > 0): ?>
 
     <?php while ($blog = $result->fetch_assoc()): ?>
 
-        <article>
+        <article class="blog-card">
 
             <h2>
                 <?php echo htmlspecialchars($blog['title']); ?>
@@ -47,8 +62,6 @@ include "header.php";
             </a>
 
         </article>
-
-        <hr>
 
     <?php endwhile; ?>
 
