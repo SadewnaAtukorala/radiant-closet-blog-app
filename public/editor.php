@@ -13,8 +13,8 @@ include "../config/db.php";
 $edit_mode = false;
 $blog_id = "";
 $title = "";
-$category = "";
 $content = "";
+$category = "";
 $current_image = "";
 
 
@@ -39,7 +39,6 @@ if (isset($_GET['id'])) {
         $user_id
     );
 
-
     $stmt->execute();
 
     $result = $stmt->get_result();
@@ -55,7 +54,6 @@ if (isset($_GET['id'])) {
 
     $blog = $result->fetch_assoc();
 
-
     $title = $blog['title'];
     $category = $blog['category'];
     $content = $blog['content'];
@@ -65,205 +63,235 @@ if (isset($_GET['id'])) {
     $stmt->close();
 }
 
-
 include "header.php";
 
 ?>
 
+<section class="editor-page">
 
-<h1>
+    <div class="editor-header">
 
-    <?php
-
-    echo $edit_mode
-        ? "Edit Blog"
-        : "Create New Blog";
-
-    ?>
-
-</h1>
-
-
-<?php if ($edit_mode): ?>
-
-    <form
-        action="../blog/update.php"
-        method="POST"
-        enctype="multipart/form-data"
-    >
-
-        <input
-            type="hidden"
-            name="id"
-            value="<?php echo htmlspecialchars($blog_id); ?>"
-        >
-
-<?php else: ?>
-
-    <form
-        action="../blog/create.php"
-        method="POST"
-        enctype="multipart/form-data"
-    >
-
-<?php endif; ?>
-
-
-    <!-- BLOG TITLE -->
-
-    <label for="title">
-        Title:
-    </label>
-
-    <br>
-
-    <input
-        type="text"
-        id="title"
-        name="title"
-        value="<?php echo htmlspecialchars($title); ?>"
-        required
-    >
-
-    <br><br>
-
-
-    <!-- CATEGORY -->
-
-    <label for="category">
-        Category:
-    </label>
-
-    <br>
-
-    <select
-        id="category"
-        name="category"
-        required
-    >
-
-        <option value="">
-            Select a category
-        </option>
-
-        <option
-            value="Fashion"
-            <?php echo ($category === "Fashion") ? "selected" : ""; ?>
-        >
-            Fashion
-        </option>
-
-        <option
-            value="Style"
-            <?php echo ($category === "Style") ? "selected" : ""; ?>
-        >
-            Style
-        </option>
-
-        <option
-            value="Beauty"
-            <?php echo ($category === "Beauty") ? "selected" : ""; ?>
-        >
-            Beauty
-        </option>
-
-        <option
-            value="Lifestyle"
-            <?php echo ($category === "Lifestyle") ? "selected" : ""; ?>
-        >
-            Lifestyle
-        </option>
-
-        <option
-            value="Trends"
-            <?php echo ($category === "Trends") ? "selected" : ""; ?>
-        >
-            Trends
-        </option>
-
-    </select>
-
-    <br><br>
-
-
-    <!-- BLOG IMAGE -->
-
-    <label for="image">
-        Blog Image:
-    </label>
-
-    <br>
-
-    <input
-        type="file"
-        id="image"
-        name="image"
-        accept="image/jpeg,image/png,image/webp"
-    >
-
-    <br>
-
-
-    <?php if ($edit_mode && !empty($current_image)): ?>
-
-        <p>
-            Current image:
+        <p class="eyebrow">
+            THE RADIANT CLOSET
         </p>
 
-        <img
-            src="uploads/blogs/<?php echo htmlspecialchars($current_image); ?>"
-            alt="Current blog image"
-            width="200"
+        <h1>
+            <?php
+            echo $edit_mode
+                ? "Edit Your Story"
+                : "Create Your Story";
+            ?>
+        </h1>
+
+        <p>
+            <?php
+            echo $edit_mode
+                ? "Make changes to your blog post and keep your story fresh."
+                : "Share your thoughts, style, and inspiration with your readers.";
+            ?>
+        </p>
+
+    </div>
+
+
+    <?php if ($edit_mode): ?>
+
+        <form
+            action="../blog/update.php"
+            method="POST"
+            enctype="multipart/form-data"
+            class="blog-editor-form"
         >
 
-        <br><br>
+            <input
+                type="hidden"
+                name="id"
+                value="<?php echo htmlspecialchars($blog_id); ?>"
+            >
+
+    <?php else: ?>
+
+        <form
+            action="../blog/create.php"
+            method="POST"
+            enctype="multipart/form-data"
+            class="blog-editor-form"
+        >
 
     <?php endif; ?>
 
 
-    <!-- BLOG CONTENT -->
+        <!-- BLOG TITLE -->
 
-    <label for="content">
-        Content:
-    </label>
+        <div class="form-group">
 
-    <br>
+            <label for="title">
+                Blog Title
+            </label>
 
-    <textarea
-        id="content"
-        name="content"
-        rows="10"
-        cols="60"
-        required
-    ><?php echo htmlspecialchars($content); ?></textarea>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="<?php echo htmlspecialchars($title); ?>"
+                placeholder="Enter your blog title..."
+                required
+            >
 
-    <br><br>
-
-
-    <!-- SUBMIT BUTTON -->
-
-    <button type="submit">
-
-        <?php
-
-        echo $edit_mode
-            ? "Update Blog"
-            : "Publish Blog";
-
-        ?>
-
-    </button>
+        </div>
 
 
-</form>
+        <!-- CATEGORY -->
+
+        <div class="form-group">
+
+            <label for="category">
+                Category
+            </label>
+
+            <select
+                id="category"
+                name="category"
+                required
+            >
+
+                <option value="">
+                    Select a category
+                </option>
+
+                <option
+                    value="Fashion"
+                    <?php echo ($category === "Fashion") ? "selected" : ""; ?>
+                >
+                    Fashion
+                </option>
+
+                <option
+                    value="Style"
+                    <?php echo ($category === "Style") ? "selected" : ""; ?>
+                >
+                    Style
+                </option>
+
+                <option
+                    value="Beauty"
+                    <?php echo ($category === "Beauty") ? "selected" : ""; ?>
+                >
+                    Beauty
+                </option>
+
+                <option
+                    value="Lifestyle"
+                    <?php echo ($category === "Lifestyle") ? "selected" : ""; ?>
+                >
+                    Lifestyle
+                </option>
+
+                <option
+                    value="Trends"
+                    <?php echo ($category === "Trends") ? "selected" : ""; ?>
+                >
+                    Trends
+                </option>
+
+            </select>
+
+        </div>
 
 
-<br>
+        <!-- BLOG IMAGE -->
+
+        <div class="form-group">
+
+            <label for="image">
+                Cover Image
+            </label>
+
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/jpeg,image/png,image/webp"
+            >
+
+            <small>
+                Upload a JPG, PNG, or WebP image for your blog.
+            </small>
 
 
-<a href="index.php">
-    Cancel
-</a>
+            <?php if ($edit_mode && !empty($current_image)): ?>
+
+                <div class="current-image">
+
+                    <p>
+                        Current image
+                    </p>
+
+                    <img
+                        src="uploads/blogs/<?php echo htmlspecialchars($current_image); ?>"
+                        alt="Current blog image"
+                    >
+
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+
+
+        <!-- BLOG CONTENT -->
+
+        <div class="form-group">
+
+            <label for="content">
+                Your Story
+            </label>
+
+            <textarea
+                id="content"
+                name="content"
+                rows="15"
+                placeholder="Start writing your story..."
+                required
+            ><?php echo htmlspecialchars($content); ?></textarea>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="editor-actions">
+
+            <button
+                type="submit"
+                class="publish-button"
+            >
+
+                <?php
+                echo $edit_mode
+                    ? "Update Blog"
+                    : "Publish Blog";
+                ?>
+
+            </button>
+
+
+            <a
+                href="<?php echo $edit_mode
+                    ? 'view.php?id=' . htmlspecialchars($blog_id)
+                    : 'index.php';
+                ?>"
+                class="cancel-button"
+            >
+                Cancel
+            </a>
+
+        </div>
+
+
+    </form>
+
+</section>
 
 
 <?php
