@@ -1499,3 +1499,434 @@ main {
     }
 
 }
+
+/* ========================================
+   DASHBOARD
+======================================== */
+
+.dashboard-page {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   DASHBOARD HEADER
+======================================== */
+
+.dashboard-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.dashboard-header h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: rgb(80, 57, 21);
+}
+
+.dashboard-header > p:last-child {
+    color: var(--color-text-light);
+}
+
+
+/* ========================================
+   DASHBOARD STATS
+======================================== */
+
+.dashboard-stats {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    min-width: 180px;
+    padding: 20px 35px;
+    text-align: center;
+    margin-top: -20px;
+
+    background-color: rgb(236, 214, 218);
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    box-shadow: 0 5px 20px rgba(63, 53, 50, 0.05);
+}
+
+.stat-number {
+    display: block;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 2.4rem;
+    line-height: 1;
+
+    color: var(--color-primary-dark);
+
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    display: block;
+
+    color: var(--color-text-light);
+
+    font-size: 0.85rem;
+}
+
+
+/* ========================================
+   DASHBOARD ACTIONS
+======================================== */
+
+.dashboard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    margin-bottom: 60px;
+}
+
+.dashboard-primary-button,
+.dashboard-secondary-button {
+    display: inline-block;
+
+    padding: 11px 22px;
+
+    border-radius: 5px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.dashboard-primary-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.dashboard-primary-button:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    text-decoration: none;
+
+    transform: translateY(-2px);
+}
+
+.dashboard-secondary-button {
+    background-color: var(--color-white);
+
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+}
+
+.dashboard-secondary-button:hover {
+    background-color: var(--color-beige);
+
+    color: var(--color-text);
+
+    text-decoration: none;
+}
+
+
+/* ========================================
+   DASHBOARD SECTION
+======================================== */
+
+.dashboard-section {
+    margin-bottom: 50px;
+}
+
+.dashboard-section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.dashboard-section-heading .eyebrow {
+    margin-bottom: 8px;
+}
+
+.dashboard-section-heading h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2rem;
+    font-weight: 500;
+
+    margin-bottom: 0;
+}
+
+.blog-count {
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+}
+
+
+/* ========================================
+   DASHBOARD BLOG GRID
+======================================== */
+
+.dashboard-blog-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px;
+}
+
+
+/* ========================================
+   DASHBOARD BLOG CARD
+======================================== */
+
+.dashboard-blog-card {
+    background-color: var(--color-white);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.dashboard-blog-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(63, 53, 50, 0.1);
+}
+
+
+/* ========================================
+   DASHBOARD BLOG IMAGE
+======================================== */
+
+.dashboard-blog-image {
+    width: 100%;
+    height: 250px;
+
+    overflow: hidden;
+}
+
+.dashboard-blog-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+.dashboard-blog-card:hover
+.dashboard-blog-image img {
+    transform: scale(1.04);
+}
+
+
+/* ========================================
+   DASHBOARD BLOG CONTENT
+======================================== */
+
+.dashboard-blog-content {
+    padding: 23px 25px 25px;
+}
+
+.dashboard-blog-content h3 {
+    color: var(--color-text);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.4rem;
+
+    margin-bottom: 12px;
+}
+
+
+/* ========================================
+   DASHBOARD BLOG META
+======================================== */
+
+.dashboard-blog-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    color: var(--color-text-light);
+
+    font-size: 0.8rem;
+
+    margin-bottom: 20px;
+}
+
+
+/* ========================================
+   DASHBOARD BLOG ACTIONS
+======================================== */
+
+.dashboard-blog-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboard-blog-actions form {
+    margin: 0;
+}
+
+.view-button,
+.dashboard-blog-actions .edit-button,
+.dashboard-delete-button {
+    padding: 8px 14px;
+
+    border-radius: 4px;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.view-button {
+    background-color: var(--color-beige);
+    color: var(--color-text);
+}
+
+.view-button:hover {
+    background-color: var(--color-border);
+    color: var(--color-text);
+
+    text-decoration: none;
+}
+
+.dashboard-blog-actions .edit-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.dashboard-blog-actions .edit-button:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+
+    text-decoration: none;
+}
+
+.dashboard-delete-button {
+    background-color: transparent;
+
+    color: var(--color-danger);
+
+    border: 1px solid var(--color-danger);
+}
+
+.dashboard-delete-button:hover {
+    background-color: var(--color-danger);
+
+    color: var(--color-white);
+}
+
+
+/* ========================================
+   DASHBOARD EMPTY STATE
+======================================== */
+
+.dashboard-empty-state {
+    text-align: center;
+
+    padding: 70px 30px;
+
+    background-color: var(--color-white);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 8px;
+}
+
+.dashboard-empty-state h3 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.8rem;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+.dashboard-empty-state p {
+    max-width: 500px;
+
+    margin: 0 auto 25px;
+
+    color: var(--color-text-light);
+}
+
+
+/* ========================================
+   DASHBOARD MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .dashboard-page {
+        width: 100%;
+    }
+
+    .dashboard-header {
+        margin-bottom: 35px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        margin-bottom: 45px;
+    }
+
+    .dashboard-primary-button,
+    .dashboard-secondary-button {
+        text-align: center;
+    }
+
+    .dashboard-section-heading {
+        align-items: center;
+    }
+
+    .dashboard-section-heading h2 {
+        font-size: 1.7rem;
+    }
+
+    .dashboard-blog-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .dashboard-blog-image {
+        height: 280px;
+    }
+
+    .dashboard-blog-actions {
+        flex-wrap: wrap;
+    }
+
+}
