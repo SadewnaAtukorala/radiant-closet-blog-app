@@ -6,7 +6,10 @@ include "../config/db.php";
 
 
 if (!isset($_GET['id'])) {
-    die("Blog ID is missing.");
+
+    header("Location: error.php?message=Blog+ID+is+missing.");
+    exit();
+
 }
 
 
@@ -31,7 +34,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
 
-    echo "Blog not found.";
+    header("Location: error.php?message=Blog+not+found.");
     exit();
 
 }

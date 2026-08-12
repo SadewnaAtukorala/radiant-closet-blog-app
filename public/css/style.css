@@ -2282,3 +2282,74 @@ EDITOR FORM MESSAGE
     font-size: 0.95rem;
     font-weight: 600;
 }
+
+/* ========================================
+   ERROR PAGE
+======================================== */
+
+.error-page {
+    max-width: 700px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.error-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 45px 35px;
+    box-shadow: 0 8px 25px rgba(63, 53, 50, 0.06);
+}
+
+.error-card h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.2rem;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.error-card p {
+    color: var(--color-text-light);
+    margin-bottom: 30px;
+}
+
+.error-button {
+    display: inline-block;
+    padding: 11px 24px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.error-button:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+/* ========================================
+   ERROR PAGE - MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .error-page {
+        margin: 35px auto;
+    }
+
+    .error-card {
+        padding: 35px 22px;
+    }
+
+    .error-card h1 {
+        font-size: 1.8rem;
+    }
+
+    .error-button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+}

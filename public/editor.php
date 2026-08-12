@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    echo "You must login first.";
+    header("Location: error.php?message=You+must+login+first.");
     exit();
 }
 
@@ -44,12 +44,12 @@ if (isset($_GET['id'])) {
     $result = $stmt->get_result();
 
 
-    if ($result->num_rows === 0) {
+  if ($result->num_rows === 0) {
 
-        echo "Blog not found or you are not authorized to edit this blog.";
-        exit();
+    header("Location: error.php?message=Blog+not+found+or+you+are+not+authorized+to+edit+this+blog.");
+    exit();
 
-    }
+}
 
 
     $blog = $result->fetch_assoc();

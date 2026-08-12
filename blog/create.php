@@ -33,7 +33,7 @@ $content = trim($_POST['content'] ?? "");
 
 if ($title === "" || $category === "" || $content === "") {
 
-    echo "Please fill in all required fields.";
+    header("Location: ../public/error.php?message=Please+fill+in+all+required+fields.");
     exit();
 
 }
@@ -71,7 +71,7 @@ $allowed_types = [
 
 if (!in_array($image['type'], $allowed_types)) {
 
-    echo "Only JPG, PNG, and WEBP images are allowed.";
+    header("Location: ../public/error.php?message=Only+JPG%2C+PNG%2C+and+WEBP+images+are+allowed.");
     exit();
 
 }
@@ -88,7 +88,7 @@ $max_size = 5 * 1024 * 1024; // 5 MB
 
 if ($image['size'] > $max_size) {
 
-    echo "Image must be smaller than 5 MB.";
+    header("Location: ../public/error.php?message=Image+must+be+smaller+than+5+MB.");
     exit();
 
 }
@@ -132,7 +132,7 @@ $upload_path = $upload_directory . $new_filename;
 
 if (!move_uploaded_file($image['tmp_name'], $upload_path)) {
 
-    echo "Failed to upload image.";
+    header("Location: ../public/error.php?message=Failed+to+upload+image.");
     exit();
 
 }
@@ -178,7 +178,8 @@ if ($stmt->execute()) {
 
 } else {
 
-    echo "Error creating blog.";
+    header("Location: ../public/error.php?message=Error+creating+blog.");
+    exit();
 
 }
 
