@@ -1,33 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Radiant Closet - Login</title>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | The Radiant Closet</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 
 <body>
 
-<h2>Login</h2>
 
-<form action="../auth/login.php" method="POST">
+<main>
 
-    <label>Email:</label>
-    <input type="email" name="email" required>
+    <section class="auth-page">
 
-    <br><br>
 
-    <label>Password:</label>
-    <input type="password" name="password" required>
+        <!-- LOGIN HEADER -->
 
-    <br><br>
+        <div class="auth-header">
 
-    <button type="submit">Login</button>
+            <p class="eyebrow">
+                THE RADIANT CLOSET
+            </p>
 
-</form>
+            <h1>
+                Welcome Back
+            </h1>
 
-<p>
-Don't have an account?
-<a href="register.html">Register</a>
-</p>
+            <p>
+                Sign in to continue sharing your stories.
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <div class="auth-card">
+            <div id="success-message"></div>
+
+            <form
+                action="../auth/login.php"
+                method="POST"
+                class="auth-form"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                >
+                    Login
+                </button>
+
+
+            </form>
+
+
+            <!-- REGISTER LINK -->
+
+            <p class="auth-footer">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Create one
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("registered") === "1") {
+
+        const message = document.getElementById("success-message");
+
+        message.textContent =
+            "Account created successfully! You can now log in.";
+
+        message.style.color = "#6f8f72";
+        message.style.marginBottom = "20px";
+
+    }
+
+</script>
+
 
 </body>
+
 </html>

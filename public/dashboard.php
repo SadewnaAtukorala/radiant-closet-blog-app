@@ -32,7 +32,6 @@ include "header.php";
 
 <section class="dashboard-page">
 
-```
 <!-- DASHBOARD HEADER -->
 
 <div class="dashboard-header">

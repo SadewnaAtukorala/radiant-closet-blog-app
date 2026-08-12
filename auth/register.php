@@ -3,10 +3,9 @@
 include "../config/db.php";
 
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-
+$username = $_POST['username'] ?? "";
+$email = $_POST['email'] ?? "";
+$password = $_POST['password'] ?? "";
 
 
 $hashedPassword = password_hash(
@@ -15,11 +14,9 @@ $hashedPassword = password_hash(
 );
 
 
-
 $sql = "INSERT INTO users
-(username,email,password)
-VALUES
-(?,?,?)";
+        (username, email, password)
+        VALUES (?, ?, ?)";
 
 
 $stmt = $conn->prepare($sql);
@@ -33,29 +30,108 @@ $stmt->bind_param(
 );
 
 
-if($stmt->execute()){
+if ($stmt->execute()) {
 
-    echo "Registration successful! Redirecting to login...";
-    header("Refresh: 2; URL=../public/login.html");
+    header("Location: ../public/login.html?registered=1");
+
     exit();
+
 }
-else{
 
-    if($stmt->errno == 1062){
 
-        echo "Email already exists.";
+if ($stmt->errno == 1062) {
 
-    }
-    else{
+    $message = "An account with this email already exists.";
 
-        echo "Error: ".$stmt->error;
+} else {
 
-    }
+    $message = "Something went wrong while creating your account.";
 
 }
 
 
 $stmt->close();
+
 $conn->close();
 
 ?>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Registration Error | The Radiant Closet</title>
+
+    <link
+        rel="stylesheet"
+        href="../public/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<main>
+
+    <section class="auth-page">
+
+
+        <div class="auth-header">
+
+            <p class="eyebrow">
+                THE RADIANT CLOSET
+            </p>
+
+            <h1>
+                Almost There
+            </h1>
+
+            <p>
+                We couldn't create your account.
+            </p>
+
+        </div>
+
+
+        <div class="auth-card">
+
+
+            <div class="auth-error">
+
+                <?php echo htmlspecialchars($message); ?>
+
+            </div>
+
+
+            <p class="auth-footer">
+
+                <a href="../public/register.html">
+                    ← Back to Registration
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+</body>
+
+</html>
