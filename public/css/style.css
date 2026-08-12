@@ -956,6 +956,7 @@ RESPONSIVE DESIGN
     .page-intro {
 
         margin-bottom: 45px;
+        padding: 0 2px 0 2px;
 
     }
 
@@ -1887,9 +1888,10 @@ main {
 @media (max-width: 768px) {
 
     .single-blog {
-    width: 100%;
+    width: 50%;
     padding: 0 15px;
     box-sizing: border-box;
+    padding: 0 10px 0 10px;
 }
 
     .dashboard-header {
@@ -1900,12 +1902,19 @@ main {
         font-size: 2.2rem;
     }
 
+    .dashboard-header p{
+    margin-bottom: 15px;
+    padding: 0 5px 0 5px;
+}
+
     .dashboard-actions {
         flex-direction: column;
 
         align-items: stretch;
 
         margin-bottom: 45px;
+
+                padding: 0 10px 0 10px
     }
 
     .dashboard-primary-button,
@@ -1915,6 +1924,7 @@ main {
 
     .dashboard-section-heading {
         align-items: center;
+        padding: 0 20px 0 20px;
     }
 
     .dashboard-section-heading h2 {
@@ -1929,6 +1939,7 @@ main {
 
     .dashboard-blog-image {
         height: 280px;
+        padding: 0 10px 0 10px;
     }
 
     .dashboard-blog-actions {

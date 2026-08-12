@@ -3,56 +3,92 @@
 include "../config/db.php";
 
 
-$username = $_POST['username'] ?? "";
-$email = $_POST['email'] ?? "";
+$username = trim($_POST['username'] ?? "");
+$email = trim($_POST['email'] ?? "");
 $password = $_POST['password'] ?? "";
 
 
-$hashedPassword = password_hash(
-    $password,
-    PASSWORD_DEFAULT
+/*
+|--------------------------------------------------------------------------
+| Check whether email already exists
+|--------------------------------------------------------------------------
+*/
+
+$check_sql = "SELECT id FROM users WHERE email = ?";
+
+$check_stmt = $conn->prepare($check_sql);
+
+$check_stmt->bind_param(
+    "s",
+    $email
 );
 
+$check_stmt->execute();
 
-$sql = "INSERT INTO users
-        (username, email, password)
-        VALUES (?, ?, ?)";
-
-
-$stmt = $conn->prepare($sql);
+$check_result = $check_stmt->get_result();
 
 
-$stmt->bind_param(
-    "sss",
-    $username,
-    $email,
-    $hashedPassword
-);
-
-
-if ($stmt->execute()) {
-
-    header("Location: ../public/login.html?registered=1");
-
-    exit();
-
-}
-
-
-if ($stmt->errno == 1062) {
+if ($check_result->num_rows > 0) {
 
     $message = "An account with this email already exists.";
 
+    $check_stmt->close();
+    $conn->close();
+
 } else {
 
-    $message = "Something went wrong while creating your account.";
+    /*
+    |--------------------------------------------------------------------------
+    | Create hashed password
+    |--------------------------------------------------------------------------
+    */
+
+    $hashedPassword = password_hash(
+        $password,
+        PASSWORD_DEFAULT
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Insert new user
+    |--------------------------------------------------------------------------
+    */
+
+    $sql = "INSERT INTO users
+            (username, email, password)
+            VALUES (?, ?, ?)";
+
+
+    $stmt = $conn->prepare($sql);
+
+
+    $stmt->bind_param(
+        "sss",
+        $username,
+        $email,
+        $hashedPassword
+    );
+
+
+    if ($stmt->execute()) {
+
+        $stmt->close();
+        $conn->close();
+
+        header("Location: ../public/login.html?registered=1");
+        exit();
+
+    } else {
+
+        $message = "Something went wrong while creating your account.";
+
+        $stmt->close();
+        $conn->close();
+
+    }
 
 }
-
-
-$stmt->close();
-
-$conn->close();
 
 ?>
 
