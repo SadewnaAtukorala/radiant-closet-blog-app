@@ -225,10 +225,10 @@ include "header.php";
 
 
                             <form
-                                action="../blog/delete.php"
-                                method="POST"
-                                onsubmit="return confirm('Are you sure you want to delete this blog?');"
-                            >
+    action="../blog/delete.php"
+    method="POST"
+    class="delete-form"
+>
 
                                 <input
                                     type="hidden"
@@ -237,11 +237,11 @@ include "header.php";
                                 >
 
                                 <button
-                                    type="submit"
-                                    class="dashboard-delete-button"
-                                >
-                                    Delete
-                                </button>
+    type="button"
+    class="delete-button delete-trigger"
+>
+    Delete
+</button>
 
                             </form>
 

@@ -428,6 +428,7 @@ hr {
     font-weight: bold;
     letter-spacing: 3px;
     margin-bottom: 15px;
+    margin-top: 10px;
 }
 
 .page-intro h1 {
@@ -1065,6 +1066,7 @@ RESPONSIVE DESIGN
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 15px;
+    padding-top: 10px;
 }
 
 
@@ -1232,8 +1234,10 @@ RESPONSIVE DESIGN
 @media (max-width: 768px) {
 
     .single-blog {
-        width: 100%;
-    }
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
 
 
     .single-blog-header {
@@ -1882,9 +1886,11 @@ main {
 
 @media (max-width: 768px) {
 
-    .dashboard-page {
-        width: 100%;
-    }
+    .single-blog {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
 
     .dashboard-header {
         margin-bottom: 35px;
@@ -2126,4 +2132,153 @@ main {
         padding: 28px 22px;
     }
 
+}
+
+/* ========================================
+DELETE CONFIRMATION MODAL
+======================================== */
+
+.delete-modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background-color: rgba(63, 53, 50, 0.45);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 2000;
+}
+
+
+.delete-modal.active {
+    display: flex;
+}
+
+
+.delete-modal-content {
+    width: 100%;
+
+    max-width: 450px;
+
+    background-color: var(--color-white);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 10px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(63, 53, 50, 0.2);
+}
+
+
+.delete-modal-content h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: var(--color-text);
+
+    margin-bottom: 15px;
+}
+
+
+.delete-modal-content p {
+    color: var(--color-text-light);
+
+    margin-bottom: 25px;
+}
+
+
+.delete-modal-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+/* Cancel */
+
+.cancel-delete {
+    background-color: var(--color-beige);
+
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+}
+
+
+.cancel-delete:hover {
+    background-color: var(--color-border);
+}
+
+
+/* Confirm Delete */
+
+.confirm-delete {
+    background-color: var(--color-danger);
+
+    color: var(--color-white);
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+}
+
+
+.confirm-delete:hover {
+    background-color: #9f4d4d;
+}
+
+
+/* ========================================
+DELETE MODAL - MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .delete-modal-content {
+        padding: 28px 22px;
+    }
+
+
+    .delete-modal-actions {
+        flex-direction: column;
+    }
+
+
+    .cancel-delete,
+    .confirm-delete {
+        width: 100%;
+    }
+
+}
+
+/* ========================================
+EDITOR FORM MESSAGE
+======================================== */
+
+.form-error {
+    background-color: #fdf0f0;
+    border: 1px solid #e3b5b5;
+    color: var(--color-danger);
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
 }

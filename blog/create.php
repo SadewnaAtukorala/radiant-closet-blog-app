@@ -47,7 +47,7 @@ if ($title === "" || $category === "" || $content === "") {
 
 if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
 
-    echo "Please select a blog image.";
+    header("Location: ../public/editor.php?error=image");
     exit();
 
 }
