@@ -83,7 +83,7 @@ include "header.php";
 
     <a href="editor.php" class="dashboard-primary-button">
         + Create New Blog
-    </a>
+    </a> 
 
     <a href="index.php" class="dashboard-secondary-button">
         View All Blogs
