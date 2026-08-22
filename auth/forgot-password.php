@@ -46,8 +46,81 @@ $result = $stmt->get_result();
  
 if ($result->num_rows === 0) { 
  
-    echo "No account was found with that email address."; 
-    exit(); 
+    if ($result->num_rows === 0) {
+
+    echo '
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+
+        <title>Account Not Found | The Radiant Closet</title>
+
+        <link rel="stylesheet" href="../css/style.css">
+
+    </head>
+
+    <body>
+
+    <main>
+
+        <section class="auth-page">
+
+            <div class="auth-header">
+
+                <p class="eyebrow">
+                    THE RADIANT CLOSET
+                </p>
+
+                <h1>
+                    Account Not Found
+                </h1>
+
+                <p>
+                    We could not find an account with that email address.
+                </p>
+
+            </div>
+
+
+            <div class="auth-card">
+
+                <div class="auth-error">
+
+                    No account was found with that email address.
+
+                </div>
+
+
+                <p class="auth-footer">
+
+                    <a href="../forgot-password.html">
+                        ← Try another email address
+                    </a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    </body>
+
+    </html>
+    ';
+
+    exit();
+
+} 
  
 } 
  
