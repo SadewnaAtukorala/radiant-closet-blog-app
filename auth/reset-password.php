@@ -13,13 +13,93 @@ $confirm_password = $_POST['confirm_password'] ?? "";
 
 
 /* ========================================
+   FUNCTION TO DISPLAY STYLED ERROR
+======================================== */
+
+function showResetError($message)
+{
+    echo '
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Reset | The Radiant Closet</title>
+
+    <link rel="stylesheet" href="../public/css/style.css">
+
+</head>
+
+<body>
+
+<main>
+
+    <section class="auth-page">
+
+        <div class="auth-header">
+
+            <p class="eyebrow">
+                THE RADIANT CLOSET
+            </p>
+
+            <h1>
+                Reset Your Password
+            </h1>
+
+            <p>
+                There was a problem resetting your password.
+            </p>
+
+        </div>
+
+
+        <div class="auth-card">
+
+            <div class="auth-error">
+
+                ' . htmlspecialchars($message) . '
+
+            </div>
+
+
+            <p class="auth-footer">
+
+                <a href="javascript:history.back()">
+                    ← Go Back
+                </a>
+
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>
+';
+
+    exit();
+}
+
+
+/* ========================================
    CHECK REQUIRED FIELDS
 ======================================== */
 
-if ($token === "" || $password === "" || $confirm_password === "") {
+if (
+    $token === "" ||
+    $password === "" ||
+    $confirm_password === ""
+) {
 
-    echo "Please fill in all fields.";
-    exit();
+    showResetError("Please fill in all fields.");
 
 }
 
@@ -30,8 +110,7 @@ if ($token === "" || $password === "" || $confirm_password === "") {
 
 if ($password !== $confirm_password) {
 
-    echo "Passwords do not match.";
-    exit();
+    showResetError("Passwords do not match.");
 
 }
 
@@ -42,8 +121,9 @@ if ($password !== $confirm_password) {
 
 if (strlen($password) < 8) {
 
-    echo "Password must be at least 8 characters long.";
-    exit();
+    showResetError(
+        "Password must be at least 8 characters long."
+    );
 
 }
 
@@ -74,8 +154,9 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
 
-    echo "Invalid or expired password reset link.";
-    exit();
+    showResetError(
+        "Invalid or expired password reset link."
+    );
 
 }
 
@@ -91,12 +172,62 @@ $user_id = $reset['user_id'];
 
 if (strtotime($reset['expires_at']) < time()) {
 
-    echo "This password reset link has expired.";
-    exit();
+    showResetError(
+        "This password reset link has expired."
+    );
 
 }
 
 $stmt->close();
+
+
+/* ========================================
+   GET CURRENT PASSWORD
+======================================== */
+
+$sql = "SELECT password
+        FROM users
+        WHERE id = ?";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "i",
+    $user_id
+);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+
+if ($result->num_rows === 0) {
+
+    showResetError(
+        "Unable to find your account."
+    );
+
+}
+
+
+$user = $result->fetch_assoc();
+
+$current_password_hash = $user['password'];
+
+$stmt->close();
+
+
+/* ========================================
+   CHECK OLD PASSWORD
+======================================== */
+
+if (password_verify($password, $current_password_hash)) {
+
+    showResetError(
+        "Your new password must be different from your current password."
+    );
+
+}
 
 
 /* ========================================
@@ -128,8 +259,9 @@ $stmt->bind_param(
 
 if (!$stmt->execute()) {
 
-    echo "Something went wrong. Please try again.";
-    exit();
+    showResetError(
+        "Something went wrong. Please try again."
+    );
 
 }
 
@@ -167,6 +299,7 @@ $conn->close();
 ======================================== */
 
 header("Location: ../public/login.html?reset=1");
+
 exit();
 
 ?>

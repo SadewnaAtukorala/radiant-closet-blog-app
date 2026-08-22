@@ -48,7 +48,7 @@ if ($result->num_rows === 0) {
  
     if ($result->num_rows === 0) {
 
-    echo '
+     echo '
     <!DOCTYPE html>
     <html lang="en">
 
@@ -63,7 +63,7 @@ if ($result->num_rows === 0) {
 
         <title>Account Not Found | The Radiant Closet</title>
 
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../public/css/style.css">
 
     </head>
 
@@ -101,7 +101,7 @@ if ($result->num_rows === 0) {
 
                 <p class="auth-footer">
 
-                    <a href="../forgot-password.html">
+                    <a href="../public/forgot-password.html">
                         ← Try another email address
                     </a>
 
@@ -119,7 +119,6 @@ if ($result->num_rows === 0) {
     ';
 
     exit();
-
 } 
  
 } 
