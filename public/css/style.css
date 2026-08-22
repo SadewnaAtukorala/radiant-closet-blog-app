@@ -545,28 +545,17 @@ BLOG CARD IMAGE
 ======================================== */
 
 .blog-card-image {
-
     width: 100%;
-
-    height: 300px;
-
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-
+    background-color: var(--color-beige);
 }
 
-
 .blog-card-image img {
-
     width: 100%;
-
     height: 100%;
-
-    object-fit: cover;
-
+    object-fit: contain;
     display: block;
-
-    transition: transform 0.5s ease;
-
 }
 
 
@@ -1722,21 +1711,18 @@ main {
 
 .dashboard-blog-image {
     width: 100%;
-    height: 250px;
-
+    aspect-ratio: 16 / 9;
     overflow: hidden;
+    background-color: var(--color-beige);
 }
 
 .dashboard-blog-image img {
     width: 100%;
     height: 100%;
-
-    object-fit: cover;
-
+    object-fit: contain;
     display: block;
-
-    transition: transform 0.5s ease;
 }
+
 
 .dashboard-blog-card:hover
 .dashboard-blog-image img {
@@ -2363,4 +2349,67 @@ EDITOR FORM MESSAGE
         text-align: center;
     }
 
+}
+
+/* ========================================
+   PASSWORD RESET SUCCESS
+======================================== */
+
+.reset-success {
+    text-align: center;
+}
+
+.reset-success-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #edf4ee;
+
+    border: 1px solid #cbdcca;
+
+    border-radius: 50%;
+
+    color: var(--color-success);
+
+    font-size: 1.8rem;
+}
+
+.reset-success h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.8rem;
+
+    font-weight: 500;
+
+    color: var(--color-text);
+
+    margin-bottom: 15px;
+}
+
+.reset-success p {
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+.reset-success .auth-button {
+    display: block;
+
+    text-align: center;
+
+    text-decoration: none;
+}
+
+.reset-success .auth-button:hover {
+    text-decoration: none;
 }

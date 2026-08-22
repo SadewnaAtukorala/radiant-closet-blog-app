@@ -100,6 +100,7 @@ include "header.php";
                             <img
                                 src="uploads/blogs/<?php echo htmlspecialchars($blog['image']); ?>"
                                 alt="<?php echo htmlspecialchars($blog['title']); ?>"
+                                loading="lazy"
                             >
 
                         <?php else: ?>
@@ -107,6 +108,7 @@ include "header.php";
                         <img
                             src="assets/images/default-blog.jpg"
                             alt="Fashion blog"
+                            loading="lazy"
                         >
 
                         <?php endif; ?>

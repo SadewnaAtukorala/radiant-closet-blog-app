@@ -155,6 +155,11 @@ $conn->close();
 
                 </div>
 
+                <p class="forgot-password-link">
+                    <a href="../forgot-password.html">
+                        Forgot your password?
+                    </a>
+                </p>
 
                 <button
                     type="submit"

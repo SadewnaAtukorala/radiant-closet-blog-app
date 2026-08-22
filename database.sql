@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 12, 2026 at 01:15 PM
+-- Generation Time: Aug 22, 2026 at 09:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -53,6 +53,28 @@ INSERT INTO `blog_posts` (`id`, `user_id`, `title`, `content`, `category`, `imag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`id`, `user_id`, `token`, `expires_at`, `created_at`) VALUES
+(13, 13, 'fec3c64be213f6f76eb37eb0bb6d52d279c0125e6c4ce18f28b342bfec7ff063', '2026-08-22 09:29:00', '2026-08-22 06:29:00'),
+(20, 14, '211020da959d9c6eccf8a3aa2ef4d66fdf1afe953f76b4c9dea8a8cb7ad0401f', '2026-08-22 09:58:06', '2026-08-22 06:58:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -73,7 +95,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 (2, 'fashiongirl', 'fashiongirl@gmail.com', '$2y$10$1eTAD5LFSdYtqIfPAw.Zkuc62jrnfkzF9I0hxeeM5Q5v5GlHhsF9K', 'user'),
 (6, 'fashion3', 'fashion3@gmail.com', '$2y$10$V9p92rNNEoFj8LeJf.Ip3OptOU35kiYss5pb0KkCj07XjjPYm1YVe', 'user'),
 (7, 'fashion4', 'fashion4@gmail.com', '$2y$10$f91z/euald5jrhP/uku9Y.KJV0VgdgaQCsRIxLPcCMNAYyNq1OnCC', 'user'),
-(9, 'testuser', 'testuser@gmail.com', '$2y$10$54zLo4ItHkfC037rlsG0QOdwuRpedd50RUfnX7kTR3GjfJExDVDTC', 'user');
+(9, 'testuser', 'testuser@gmail.com', '$2y$10$54zLo4ItHkfC037rlsG0QOdwuRpedd50RUfnX7kTR3GjfJExDVDTC', 'user'),
+(13, 'sade', 'ssde96033@gmail.com', '$2y$10$MltUgB7FkdDTGAEFo09ypOeQovU4jlglliP4xpv2keF/4wkPVkPJC', 'user'),
+(14, 'ssde', 'snn8572@gmail.com', '$2y$10$SVbNYjryGLu2seg159vsA.nYaJLZc0SQ6ldES1zYDtPr/iucKDFxq', 'user');
 
 --
 -- Indexes for dumped tables
@@ -84,6 +108,14 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 --
 ALTER TABLE `blog_posts`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token` (`token`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -104,10 +136,16 @@ ALTER TABLE `blog_posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -118,6 +156,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `blog_posts`
   ADD CONSTRAINT `blog_posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD CONSTRAINT `password_resets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

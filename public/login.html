@@ -93,6 +93,10 @@
 
                 </div>
 
+                <p class="forgot-password">
+                    <a href="forgot-password.html">Forgot your password?</a>
+                </p>
+
 
                 <!-- LOGIN BUTTON -->
 
@@ -131,17 +135,29 @@
 
     const params = new URLSearchParams(window.location.search);
 
-    if (params.get("registered") === "1") {
+const message = document.getElementById("success-message");
 
-        const message = document.getElementById("success-message");
 
-        message.textContent =
-            "Account created successfully! You can now log in.";
+if (params.get("registered") === "1") {
 
-        message.style.color = "#6f8f72";
-        message.style.marginBottom = "20px";
+    message.textContent =
+        "Account created successfully! You can now log in.";
 
-    }
+    message.style.color = "#6f8f72";
+    message.style.marginBottom = "20px";
+
+}
+
+
+if (params.get("reset") === "1") {
+
+    message.textContent =
+        "Password reset successfully! You can now log in.";
+
+    message.style.color = "#6f8f72";
+    message.style.marginBottom = "20px";
+
+}
 
 </script>
 
