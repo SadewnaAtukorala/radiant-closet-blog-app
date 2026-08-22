@@ -41,99 +41,128 @@ if ($title === "" || $category === "" || $content === "") {
 
 /*
 |--------------------------------------------------------------------------
-| Check image
+| Handle blog image
+|--------------------------------------------------------------------------
+|
+| If the user selects an image:
+|     Upload and save its filename.
+|
+| If the user does NOT select an image:
+|     Save an empty value.
+|
+| view.php will then automatically display:
+| assets/images/default-blog.jpg
+|
 |--------------------------------------------------------------------------
 */
 
-if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
 
-    header("Location: ../public/editor.php?error=image");
-    exit();
+if (
+    isset($_FILES['image']) &&
+    $_FILES['image']['error'] === UPLOAD_ERR_OK
+) {
 
-}
-
-
-$image = $_FILES['image'];
+    $image = $_FILES['image'];
 
 
-/*
-|--------------------------------------------------------------------------
-| Validate image type
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Validate image type
+    |--------------------------------------------------------------------------
+    */
 
-$allowed_types = [
-    "image/jpeg",
-    "image/png",
-    "image/webp"
-];
-
-
-if (!in_array($image['type'], $allowed_types)) {
-
-    header("Location: ../public/error.php?message=Only+JPG%2C+PNG%2C+and+WEBP+images+are+allowed.");
-    exit();
-
-}
+    $allowed_types = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
 
 
-/*
-|--------------------------------------------------------------------------
-| Validate image size
-|--------------------------------------------------------------------------
-*/
+    if (!in_array($image['type'], $allowed_types)) {
 
-$max_size = 5 * 1024 * 1024; // 5 MB
+        header("Location: ../public/error.php?message=Only+JPG%2C+PNG%2C+and+WEBP+images+are+allowed.");
+        exit();
 
-
-if ($image['size'] > $max_size) {
-
-    header("Location: ../public/error.php?message=Image+must+be+smaller+than+5+MB.");
-    exit();
-
-}
+    }
 
 
-/*
-|--------------------------------------------------------------------------
-| Create unique filename
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Validate image size
+    |--------------------------------------------------------------------------
+    */
 
-$extension = pathinfo(
-    $image['name'],
-    PATHINFO_EXTENSION
-);
+    $max_size = 5 * 1024 * 1024; // 5 MB
 
 
-$new_filename = uniqid(
-    "blog_",
-    true
-) . "." . strtolower($extension);
+    if ($image['size'] > $max_size) {
+
+        header("Location: ../public/error.php?message=Image+must+be+smaller+than+5+MB.");
+        exit();
+
+    }
 
 
-/*
-|--------------------------------------------------------------------------
-| Image upload location
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Create unique filename
+    |--------------------------------------------------------------------------
+    */
 
-$upload_directory = "../public/uploads/blogs/";
+    $extension = pathinfo(
+        $image['name'],
+        PATHINFO_EXTENSION
+    );
 
 
-$upload_path = $upload_directory . $new_filename;
+    $new_filename = uniqid(
+        "blog_",
+        true
+    ) . "." . strtolower($extension);
 
 
-/*
-|--------------------------------------------------------------------------
-| Move uploaded image
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Image upload location
+    |--------------------------------------------------------------------------
+    */
 
-if (!move_uploaded_file($image['tmp_name'], $upload_path)) {
+    $upload_directory = "../public/uploads/blogs/";
 
-    header("Location: ../public/error.php?message=Failed+to+upload+image.");
-    exit();
+
+    $upload_path = $upload_directory . $new_filename;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Move uploaded image
+    |--------------------------------------------------------------------------
+    */
+
+    if (!move_uploaded_file(
+        $image['tmp_name'],
+        $upload_path
+    )) {
+
+        header("Location: ../public/error.php?message=Failed+to+upload+image.");
+        exit();
+
+    }
+
+
+} else {
+
+    /*
+    |--------------------------------------------------------------------------
+    | No image selected
+    |--------------------------------------------------------------------------
+    |
+    | Leave the database image field empty.
+    | view.php will use the default image.
+    |
+    */
+
+    $new_filename = "";
 
 }
 
@@ -170,6 +199,12 @@ $stmt->bind_param(
     $new_filename
 );
 
+
+/*
+|--------------------------------------------------------------------------
+| Save blog
+|--------------------------------------------------------------------------
+*/
 
 if ($stmt->execute()) {
 

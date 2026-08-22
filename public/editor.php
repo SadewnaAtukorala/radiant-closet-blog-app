@@ -68,13 +68,6 @@ include "header.php";
 ?>
 
 <section class="editor-page">
-    <?php if (isset($_GET['error']) && $_GET['error'] === 'image'): ?>
-
-    <div class="form-error">
-        Please select a cover image for your blog.
-    </div>
-
-<?php endif; ?>
 
     <div class="editor-header">
 
